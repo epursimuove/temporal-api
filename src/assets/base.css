@@ -1,0 +1,41 @@
+:root {
+  --color-background: #ffffff;
+  --color-text: #000000;
+
+  --section-gap: 160px;
+
+  --color-footer: rgba(150, 150, 150, 1);
+
+  --monospace-family: Courier, "Courier New", "Menlo", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /*margin: 0;*/
+  /*font-weight: normal;*/
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  line-height: 1.6;
+  font-family: "Arial", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block-start: 2.2rem;
+}
