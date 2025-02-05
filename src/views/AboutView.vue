@@ -1,4 +1,5 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 
 <template>
   <h1>About</h1>
@@ -11,16 +12,24 @@
   </p>
 
   <p>The tool should handle timestamps defined as epoch values or in the ISO 8601 format.</p>
+  
+  <h2>Source code</h2>
+
+  <p>
+    Source code available at <a href="https://github.com/epursimuove/temporal-api">GitHub</a>.
+  </p>
 
   <h2>Version history</h2>
 
-  <p>Version <var>1.0.0</var> was released in May 2024.</p>
-
-  <p>Version <var>1.0.1</var> was released in September 2024.</p>
+  <p>Version <var>1.0.4</var> was released in February 2025.</p>
+  
+  <p>Version <var>1.0.3</var> was released in December 2024.</p>
 
   <p>Version <var>1.0.2</var> was released in November 2024.</p>
 
-  <p>Version <var>1.0.3</var> was released in December 2024.</p>
+  <p>Version <var>1.0.1</var> was released in September 2024.</p>
+
+  <p>Version <var>1.0.0</var> was released in May 2024.</p>
 
   <h2>References</h2>
 
@@ -45,7 +54,9 @@
     <li>
       <a href="https://anders.nemonisimors.com/projects/timeZones">NNM Time zones</a>
     </li>
-    <li></li>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal">Temporal (MDN Web Docs)</a>
+    </li>
     <li></li>
     <li></li>
   </ul>

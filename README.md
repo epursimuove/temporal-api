@@ -1,6 +1,6 @@
 # temporal-api
 
-Trying out different aspects of Temporal API
+Trying out different aspects of Temporal API. Deployed as [Timestamp magician](https://anders.nemonisimors.com/projects/temporal).
 
 ## Customize configuration
 
