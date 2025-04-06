@@ -40,7 +40,7 @@ const browserZonedDateTimeNow: ComputedRef<Temporal.ZonedDateTime> = computed(()
 );
 
 const zuluZonedDateTimeNow: ComputedRef<Temporal.ZonedDateTime> = computed(() =>
-  instantNow.value.toZonedDateTimeISO(Temporal.TimeZone.from("UTC")),
+  instantNow.value.toZonedDateTimeISO("UTC"),
 );
 
 const rawInputValue: Ref<string> = ref(instantNow.value.toString());
@@ -51,7 +51,7 @@ const browserZonedDateTimeDerivedInstant: ComputedRef<Temporal.ZonedDateTime | u
   computed(() => derivedInstant.value?.toZonedDateTimeISO(browserTimeZone));
 
 const zuluZonedDateTimeDerivedInstant: ComputedRef<Temporal.ZonedDateTime | undefined> = computed(
-  () => derivedInstant.value?.toZonedDateTimeISO(Temporal.TimeZone.from("UTC")),
+  () => derivedInstant.value?.toZonedDateTimeISO("UTC"),
 );
 
 const inputOkay: Ref<boolean> = ref(true);
@@ -70,7 +70,7 @@ watchEffect(() => {
     derivedInstant.value = Temporal.Instant.fromEpochMilliseconds(parseInt(rawInputValue.value));
     inputOkay.value = true;
   } else if (epochSecondsRegExp.test(rawInputValue.value)) {
-    derivedInstant.value = Temporal.Instant.fromEpochSeconds(parseInt(rawInputValue.value));
+    derivedInstant.value = Temporal.Instant.fromEpochMilliseconds(parseInt(rawInputValue.value) * 1000);
     inputOkay.value = true;
   } else {
     inputOkay.value = false;
@@ -233,12 +233,12 @@ const differenceFromNowHuman: ComputedRef<string | undefined> = computed(() => {
 
   <label-value-formatter
     :label="`Current time (epoch in seconds)`"
-    :value="instantNow.epochSeconds"
+    :value="instantNow.epochMilliseconds / 1000"
   />
 
   <label-value-formatter
     :label="`Your defined timestamp (epoch in seconds and milliseconds)`"
-    :value="derivedInstant?.epochSeconds || UNDEFINED"
+    :value="derivedInstant ? Math.round(derivedInstant.epochMilliseconds / 1000) : UNDEFINED"
     :additional-value="derivedInstant?.epochMilliseconds || UNDEFINED"
   />
 </template>
