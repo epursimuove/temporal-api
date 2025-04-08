@@ -21,6 +21,8 @@
 
   <h2>Version history</h2>
 
+  <p>Version <var>1.1.1</var> was released in April 2025.</p>
+  
   <p>Version <var>1.1.0</var> was released in April 2025.</p>
 
   <p>Version <var>1.0.5</var> was released in April 2025.</p>

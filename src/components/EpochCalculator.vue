@@ -229,7 +229,7 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
     <input type="checkbox" id="compareAgainstNow" v-model="compareAgainstNow" />
 
     <label for="compareAgainstNow">
-      Compare against now (otherwise you compare against additional timestamp)
+      Compare against <em>current time</em> (otherwise you compare against <em>additional timestamp</em>)
     </label>
   </div>
 
@@ -238,6 +238,7 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
 
     <input
       type="text"
+      :class="{valid: inputOkay, invalid: !inputOkay}"
       id="rawInputValue"
       size="29"
       maxlength="29"
@@ -254,6 +255,7 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
 
     <input
       type="text"
+      :class="{valid: additionalInputOkay, invalid: !additionalInputOkay}"
       id="rawAdditionalInputValue"
       size="29"
       maxlength="29"
@@ -266,7 +268,8 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
 
   <label-value-formatter
     v-if="displayInZulu"
-    label="Your defined timestamp (Zulu)"
+    label="Your defined timestamp"
+    meta-label="Zulu"
     :value="derivedInstant?.toString() || UNDEFINED"
     :additional-value="
       zuluZonedDateTimeDerivedInstant?.toLocaleString(locale, optionsForLocaleString) || UNDEFINED
@@ -275,7 +278,8 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
 
   <label-value-formatter
     v-else
-    :label="`Your defined timestamp (${browserTimeZone})`"
+    :label="`Your defined timestamp`"
+    :meta-label="`${browserTimeZone}`"
     :value="browserZonedDateTimeDerivedInstant?.toString(optionsForString) || UNDEFINED"
     :additional-value="
       browserZonedDateTimeDerivedInstant?.toLocaleString(locale, optionsForLocaleString) ||
@@ -286,7 +290,8 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
   <template v-if="!compareAgainstNow">
     <label-value-formatter
       v-if="displayInZulu"
-      label="Your additional defined timestamp (Zulu)"
+      label="Your additional defined timestamp"
+      meta-label="Zulu"
       :value="additionalDerivedInstant?.toString() || UNDEFINED"
       :additional-value="
         zuluZonedDateTimeAdditionalDerivedInstant?.toLocaleString(locale, optionsForLocaleString) ||
@@ -296,7 +301,8 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
 
     <label-value-formatter
       v-else
-      :label="`Your additional defined timestamp (${browserTimeZone})`"
+      :label="`Your additional defined timestamp`"
+      :meta-label="`${browserTimeZone}`"
       :value="browserZonedDateTimeAdditionalDerivedInstant?.toString(optionsForString) || UNDEFINED"
       :additional-value="
         browserZonedDateTimeAdditionalDerivedInstant?.toLocaleString(
@@ -310,14 +316,16 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
   <template v-if="compareAgainstNow">
     <label-value-formatter
       v-if="displayInZulu"
-      label="Current time (Zulu)"
+      label="Current time"
+      meta-label="Zulu"
       :value="instantNow.toString()"
       :additional-value="zuluZonedDateTimeNow.toLocaleString(locale, optionsForLocaleString)"
     />
 
     <label-value-formatter
       v-else
-      :label="`Current time (${browserTimeZone})`"
+      :label="`Current time`"
+      :meta-label="`${browserTimeZone}`"
       :value="browserZonedDateTimeNow.toString(optionsForString)"
       :additional-value="browserZonedDateTimeNow.toLocaleString(locale, optionsForLocaleString)"
     />
@@ -326,13 +334,15 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
   <template v-if="compareAgainstNow">
     <label-value-formatter
       v-if="displayInZulu"
-      label="Current day of week (Zulu)"
+      label="Current day of week"
+      meta-label="Zulu"
       :value="zuluZonedDateTimeNow.toLocaleString(locale, { weekday: 'long' })"
     />
 
     <label-value-formatter
       v-else
-      :label="`Current day of week (${browserTimeZone})`"
+      :label="`Current day of week`"
+      :meta-label="`${browserTimeZone}`"
       :value="browserZonedDateTimeNow.toLocaleString(locale, { weekday: 'long' })"
     />
   </template>
@@ -340,13 +350,15 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
   <template v-if="compareAgainstNow">
     <label-value-formatter
       v-if="displayInZulu"
-      label="Current week (Zulu)"
+      label="Current week"
+      meta-label="Zulu"
       :value="zuluZonedDateTimeNow.weekOfYear || ''"
     />
 
     <label-value-formatter
       v-else
-      :label="`Current week (${browserTimeZone})`"
+      :label="`Current week`"
+      :meta-label="`${browserTimeZone}`"
       :value="browserZonedDateTimeNow.weekOfYear || ''"
     />
   </template>
@@ -389,19 +401,22 @@ const differenceBetweenTimestampsHuman: ComputedRef<string | undefined> = comput
 
   <label-value-formatter
     v-if="compareAgainstNow"
-    :label="`Current time (epoch in seconds)`"
+    :label="`Current time`"
+    meta-label="epoch in seconds"
     :value="instantNow.epochMilliseconds / 1000"
   />
 
   <label-value-formatter
-    :label="`Your defined timestamp (epoch in seconds and milliseconds)`"
+    :label="`Your defined timestamp`"
+    meta-label="epoch in seconds and milliseconds"
     :value="derivedInstant ? Math.round(derivedInstant.epochMilliseconds / 1000) : UNDEFINED"
     :additional-value="derivedInstant?.epochMilliseconds || UNDEFINED"
   />
 
   <label-value-formatter
     v-if="!compareAgainstNow"
-    :label="`Your additional defined timestamp (epoch in seconds and milliseconds)`"
+    :label="`Your additional defined timestamp`"
+    meta-label="epoch in seconds and milliseconds"
     :value="
       additionalDerivedInstant
         ? Math.round(additionalDerivedInstant.epochMilliseconds / 1000)
@@ -425,6 +440,19 @@ div {
 input {
   font-size: 1.5rem;
   font-family: var(--monospace-family);
+  
+  &[type="text"] {
+    
+    &.valid {
+      color: mediumseagreen;
+      background-color: rgb(245, 255, 245);
+    }
+    
+    &.invalid {
+      color: orangered;
+      background-color: rgb(255, 245, 245);
+    }
+  }
 }
 
 @media screen and (max-width: 600px) {
