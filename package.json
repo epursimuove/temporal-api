@@ -1,6 +1,6 @@
 {
   "name": "temporal-api",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "type": "module",
   "author": {
     "name": "Anders Gustafson"
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node18": "^18.2.4",
-    "@types/jsdom": "^21.1.7",
+    "@types/jsdom": "^27.0.0",
     "@types/node": "^24.3.3",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/eslint-config-prettier": "^10.1.0",
@@ -38,7 +38,7 @@
     "prettier": "^3.4.2",
     "typescript": "^5.8.3",
     "vite": "^7.1.5",
-    "vitest": "^3.0.5",
+    "vitest": "^4.0.13",
     "vue-tsc": "^3.0.7"
   }
 }
