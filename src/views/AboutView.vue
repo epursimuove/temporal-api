@@ -1,4 +1,5 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 
 <template>
   <h1>About</h1>
@@ -18,6 +19,8 @@
 
   <h2>Version history</h2>
 
+  <p>Version <var>1.1.5</var> was released in June 2026.</p>
+  
   <p>Version <var>1.1.4</var> was released in March 2026.</p>
 
   <p>Version <var>1.1.3</var> was released in November 2025.</p>
